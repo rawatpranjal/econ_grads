@@ -25,7 +25,11 @@ Thumbs.db
 *.swo
 
 # Project-specific
-data/raw/          # Cached HTML (large, regenerable)
-data/backups/      # Local backups
-data/h1b_lca.csv   # Large H1B file (manual download)
-data/scrape_state.json  # Scraper state (regenerable)
+# Cached HTML (large, regenerable)
+data/raw/
+# Local backups
+data/backups/
+# Large H1B file (manual download)
+data/h1b_lca.csv
+# Scraper state (regenerable)
+data/scrape_state.json
