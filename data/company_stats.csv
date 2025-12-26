@@ -1,0 +1,27 @@
+company,hire_count,retention_rate,senior_rate,top_schools
+Amazon,111,0.68,0.26,"UCLA, Duke, University of Washington"
+Uber,43,0.51,0.28,"Harvard, UCLA, Columbia"
+Meta,14,0.36,0.07,"Harvard, University of Washington, University of Illinois"
+Wayfair,11,0.55,0.36,"Carnegie Mellon, University of Maryland, Harvard"
+Microsoft,10,0.5,0.2,"University of Maryland, University of Washington, Stanford"
+Google,6,0.5,0.17,"Harvard, UC Berkeley, Yale"
+Block,4,0.75,0.25,"Harvard, UC Berkeley"
+Airbnb,4,0.75,0.25,"Cornell, Duke, University of Michigan"
+Vanguard,3,0.33,0.0,"University of Pennsylvania, Columbia"
+Instacart,3,1.0,0.33,"Harvard, Stanford, UCLA"
+Two Sigma,2,0.5,0.0,"UC Berkeley, Princeton"
+LinkedIn,1,1.0,0.0,Carnegie Mellon
+Gusto LLC,1,0.0,1.0,University of Maryland
+Hector ArturoRivada NetworksMicroeconomic Theory,1,0.0,0.0,University of Maryland
+"Data Scientist, TikTok",1,0.0,0.0,Cornell
+Behavioural Insights Team,1,0.0,0.0,Columbia
+Susquehanna International Group,1,0.0,0.0,Columbia
+Jane Street,1,0.0,0.0,Princeton
+Lyft,1,1.0,1.0,Harvard
+Coursera,1,1.0,0.0,Harvard
+Netflix,1,1.0,1.0,Brown
+Spotify,1,1.0,1.0,Harvard
+X,1,0.0,0.0,University of Chicago
+Zillow,1,1.0,0.0,Harvard
+NERA Intellectual Property Practice,1,0.0,1.0,Harvard
+Opportunity Insights,1,0.0,0.0,University of Maryland

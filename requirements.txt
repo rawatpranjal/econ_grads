@@ -1,0 +1,21 @@
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+pandas>=2.0.0
+selenium>=4.15.0
+webdriver-manager>=4.0.0
+lxml>=4.9.0
+pdfplumber>=0.11.0
+openai>=1.0.0
+python-dotenv>=1.0.0
+scholarly>=1.7.0
+
+# Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.18.0
+kaleido>=0.2.1
+numpy>=1.24.0
+networkx>=3.0
+
+# Testing
+pytest>=7.0.0
