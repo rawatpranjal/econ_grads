@@ -42,7 +42,7 @@ python charts.py     # Generate visualizations
 
 1. **Scrape** - Pull placement data from university websites
 2. **Enrich** - Add LinkedIn/Scholar data via Perplexity API (optional)
-3. **Score** - Rank companies by PhD talent quality
+3. **Score** - Generate company hiring statistics
 4. **Visualize** - Generate charts
 
 ## License

@@ -2,7 +2,7 @@
 """
 Company statistics for economics PhD hiring patterns.
 
-Provides descriptive stats only - no quality rankings (sample sizes too small).
+Provides descriptive statistics only.
 """
 import pandas as pd
 from pathlib import Path
@@ -89,8 +89,7 @@ def print_stats(stats_df: pd.DataFrame, top_n: int = 20):
               f"{row['top_schools'][:30]}")
 
     print("\n" + "=" * 75)
-    print("Note: This is descriptive data only, not a quality ranking.")
-    print("      Sample sizes are too small for meaningful rankings.")
+    print("Note: This is descriptive data only.")
     print("=" * 75)
 
 

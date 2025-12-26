@@ -1,10 +1,10 @@
 # econ-grads
 
-Track where Economics PhD graduates land in tech to infer quality of tech firms.
+Track where Economics PhD graduates land in tech.
 
 ## Goals
 
-- goal is to get a sense of where econ phd are going in tech to try to infer the quality of the tech firm itself. 
+- goal is to get a sense of where econ phd are going in tech. 
 - we will: scrape, parse via LLMs, structure and create a dataset first. 
 - focus only on tech jobs nothing else
 - try to gather as much info as possible
@@ -21,7 +21,7 @@ econ-grads/
 ├── scraper.py             # Web scraper with Selenium fallback + incremental scraping
 ├── enricher.py            # Perplexity Sonar + Google Scholar enrichment
 ├── compensation.py        # H1B salary + Levels.fyi data
-├── scoring.py             # Company quality scoring
+├── scoring.py             # Company statistics
 ├── analyze.py             # Data analysis functions
 ├── charts.py              # Visualization generator
 ├── normalize.py           # Company name normalization
@@ -43,7 +43,7 @@ econ-grads/
 ├── data/
 │   ├── candidates.csv          # Main dataset
 │   ├── candidates_enriched.csv # With Sonar + Scholar data
-│   ├── company_scores.csv      # Quality rankings (generated)
+│   ├── company_scores.csv      # Company statistics (generated)
 │   ├── scrape_state.json       # Incremental scrape state
 │   ├── raw/                    # Cached HTML for debugging
 │   └── h1b_lca.csv             # H1B salary data (manual download)
@@ -94,7 +94,7 @@ Berkeley, Brown, CMU, Columbia, Cornell, Duke, Harvard, Illinois, Maryland, Mich
 │         Requires: data/h1b_lca.csv (manual download from DOL)   │
 │                                                                 │
 │  4. SCORE         python scoring.py                             │
-│     └─> Ranks companies by PhD talent quality                   │
+│     └─> Generates company hiring statistics                   │
 │         Output: data/company_scores.csv                         │
 │                                                                 │
 │  5. ANALYZE       python analyze.py                             │
@@ -133,7 +133,7 @@ python enricher.py --no-scholar  # Skip Scholar (faster)
 python compensation.py
 
 # Analysis & Visualization
-python scoring.py              # Generate company quality scores
+python scoring.py              # Generate company statistics
 python analyze.py              # Print analysis to console
 python charts.py               # Generate charts to charts/
 

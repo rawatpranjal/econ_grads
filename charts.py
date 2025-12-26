@@ -589,100 +589,6 @@ def chart_school_to_role(df: pd.DataFrame) -> None:
     print("  - school_to_role.png")
 
 
-def chart_mobility(df: pd.DataFrame) -> None:
-    """Career mobility analysis - who moved and where."""
-    # Company tiers for mobility scoring
-    tier1 = {'google', 'meta', 'facebook', 'apple', 'amazon', 'microsoft', 'netflix'}
-    tier2 = {'uber', 'airbnb', 'stripe', 'two sigma', 'jane street', 'citadel'}
-    tier3 = {'instacart', 'doordash', 'wayfair', 'zillow', 'capital one'}
-    academic = {'harvard', 'mit', 'stanford', 'nyu', 'columbia', 'yale', 'princeton', 'uchicago'}
-
-    def get_tier(company: str) -> int:
-        if pd.isna(company):
-            return 0
-        c = str(company).lower()
-        if any(t in c for t in tier1):
-            return 3
-        elif any(t in c for t in tier2):
-            return 2
-        elif any(t in c for t in tier3):
-            return 1
-        elif any(t in c for t in academic):
-            return 4  # Academic
-        return 1
-
-    df_copy = df.copy()
-    df_copy['initial_tier'] = df_copy['initial_placement'].apply(get_tier)
-    df_copy['current_co'] = df_copy['current_company'].fillna(df_copy['initial_placement'])
-    df_copy['current_tier'] = df_copy['current_co'].apply(get_tier)
-    df_copy['tier_change'] = df_copy['current_tier'] - df_copy['initial_tier']
-
-    # Also check if they moved companies
-    df_copy['moved'] = df_copy.apply(
-        lambda r: str(r['initial_placement']).lower().strip() != str(r['current_co']).lower().strip()
-        if pd.notna(r['current_co']) and r['current_co'] not in ['', '0', '0.0', 'nan']
-        else False, axis=1
-    )
-
-    # Create mobility summary
-    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
-
-    # 1. Mobility rate by school
-    mobility_by_school = df_copy.groupby('school')['moved'].mean() * 100
-    mobility_by_school = mobility_by_school.sort_values(ascending=True)
-    ax1 = axes[0, 0]
-    bars = ax1.barh(mobility_by_school.index, mobility_by_school.values, color=COLORS["accent"])
-    ax1.set_xlabel("% Who Changed Companies")
-    ax1.set_title("Mobility Rate by School", fontweight="bold", color=COLORS["primary"])
-    ax1.bar_label(bars, fmt='%.0f%%', padding=5)
-
-    # 2. Company tier changes
-    tier_labels = ['Stayed Same', 'Moved Up', 'Moved Down', 'To Academia']
-    tier_counts = [
-        len(df_copy[(df_copy['moved']) & (df_copy['tier_change'] == 0)]),
-        len(df_copy[(df_copy['moved']) & (df_copy['tier_change'] > 0) & (df_copy['current_tier'] != 4)]),
-        len(df_copy[(df_copy['moved']) & (df_copy['tier_change'] < 0)]),
-        len(df_copy[(df_copy['moved']) & (df_copy['current_tier'] == 4)]),
-    ]
-    ax2 = axes[0, 1]
-    wedges, texts, autotexts = ax2.pie(
-        [c for c in tier_counts if c > 0],
-        labels=[l for l, c in zip(tier_labels, tier_counts) if c > 0],
-        autopct='%1.0f%%', colors=PALETTE[:4],
-        wedgeprops=dict(linewidth=2, edgecolor=COLORS["bg"]),
-    )
-    ax2.set_title("Career Move Direction", fontweight="bold", color=COLORS["primary"])
-
-    # 3. Tenure by year (approximation based on grad year)
-    df_copy['years_since_grad'] = datetime.now().year - df_copy['graduation_year']
-    ax3 = axes[1, 0]
-    tenure_data = df_copy.groupby('graduation_year').agg({
-        'moved': 'mean',
-        'name': 'count'
-    }).reset_index()
-    tenure_data.columns = ['year', 'mobility_rate', 'count']
-    ax3.bar(tenure_data['year'], tenure_data['mobility_rate'] * 100, color=COLORS["accent"])
-    ax3.set_xlabel("Graduation Year")
-    ax3.set_ylabel("% Changed Jobs")
-    ax3.set_title("Mobility by Graduation Cohort", fontweight="bold", color=COLORS["primary"])
-
-    # 4. Top destinations for movers
-    movers = df_copy[df_copy['moved']]
-    if len(movers) > 0:
-        destinations = movers['current_co'].value_counts().head(8)
-        ax4 = axes[1, 1]
-        bars = ax4.barh(destinations.index[::-1], destinations.values[::-1], color=PALETTE[1])
-        ax4.set_xlabel("Count")
-        ax4.set_title("Top Destinations for Job Changers", fontweight="bold", color=COLORS["primary"])
-        ax4.bar_label(bars, padding=5)
-
-    plt.suptitle("Career Mobility Analysis", fontsize=16, fontweight="bold", color=COLORS["text"], y=1.02)
-    plt.tight_layout()
-    plt.savefig(CHARTS_DIR / "mobility.png", dpi=150, facecolor=COLORS["bg"], bbox_inches='tight')
-    plt.close()
-    print("  - mobility.png")
-
-
 def chart_selectivity(df: pd.DataFrame) -> None:
     """Show which schools each company hires from (target school analysis)."""
     # Get company-school counts
@@ -1450,7 +1356,6 @@ def main():
     chart_company_roles(df)
     chart_movers(df)
     chart_school_to_role(df)
-    chart_mobility(df)
     chart_selectivity(df)
 
     print("\nGenerating new analytics charts:")

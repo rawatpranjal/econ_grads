@@ -33,3 +33,5 @@ data/backups/
 data/h1b_lca.csv
 # Scraper state (regenerable)
 data/scrape_state.json
+# Company scores (local only)
+data/company_scores.csv
