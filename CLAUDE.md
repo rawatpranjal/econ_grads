@@ -29,7 +29,7 @@ econ-grads/
 ├── expand_search.py       # Search expansion utilities
 ├── network.py             # Network analysis
 ├── pdf_parser.py          # PDF parsing for placement data
-├── ranking_charts.py      # Additional ranking visualizations
+├── hiring_charts.py       # Additional hiring visualizations
 ├── work_tags.py           # Work focus tagging
 ├── requirements.txt       # Python dependencies
 ├── parsers/               # School-specific parsers (24 schools)
@@ -112,7 +112,7 @@ Berkeley, Brown, CMU, Columbia, Cornell, Duke, Harvard, Illinois, Maryland, Mich
 ```bash
 pip install -r requirements.txt
 python scraper.py    # Get base data from university websites
-python scoring.py    # Score companies by PhD talent
+python scoring.py    # Generate company statistics
 python analyze.py    # See summary results
 python charts.py     # Generate visualizations
 ```

@@ -1,6 +1,6 @@
 # Econ PhD Tech Tracker
 
-Where do Economics PhDs land in tech? This project scrapes placement data from 24 top economics PhD programs to understand which tech companies attract top quantitative talent.
+Where do Economics PhDs land in tech? This project scrapes placement data from 24 top economics PhD programs to understand which tech companies hire PhD economists.
 
 ## Key Findings
 
@@ -34,7 +34,7 @@ Tracking **24 top economics PhD programs**: Berkeley, Brown, CMU, Columbia, Corn
 ```bash
 pip install -r requirements.txt
 python scraper.py    # Scrape placement data
-python scoring.py    # Score companies
+python scoring.py    # Generate statistics
 python charts.py     # Generate visualizations
 ```
 
